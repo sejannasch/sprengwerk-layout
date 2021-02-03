@@ -1,0 +1,4 @@
+/public/img
+/public/fonts
+/node_modules
+.env
