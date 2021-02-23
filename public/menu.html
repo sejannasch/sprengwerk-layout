@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sprengwerk Adressdatenbank</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script
+      src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
+      defer
+    ></script>
+  </head>
+  <body x-data="{ sidebarOpen: 'none' }">
+    <div id="app" class="h-screen flex flex-col space-y-8">
+      <div class="fixed w-full z-50">
+        <header class="bg-gray-50 shadow-lg container mx-auto py-8 px-8 flex items-center">
+            <button @click="sidebarOpen = 'left'">
+              <svg
+                class="h-6 w-6 text-gray-600 hover:text-gray-900 focus:outline-none text-sm"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </button>
+  
+            <img
+              src="img/sprengwerk_logo.svg"
+              alt="Logo Sprengwerk"
+              class="block mx-auto h-4 lg:h-12"
+            />
+  
+            <button @click="sidebarOpen = 'right'">
+              <svg
+                class="h-6 w-6 text-gray-600 hover:text-gray-900 focus:outline-none text-sm"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </button>
+        </header>
+      </div>
+
+      <div class="body flex-grow flex pt-24">
+        <div
+          x-show.transition.duration.1000ms.opacity="sidebarLeftOpen"
+          @click.away="sidebarOpen = 'none'"
+          class="sidebar w-full lg:w-1/4 h-full bg-gray-50 py-8 px-4 shadow-lg border"
+        >
+          <h4 class="uppercase">Sidebar left</h4>
+          <div @click="sidebarOpen = 'none'" class="close cursor-pointer">
+            <svg
+              class="text-gray-600 h-4 w-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+          </div>
+        </div>
+
+        <div class="flex-grow w-full flex h-full">
+          <div class="container mx-auto main-content py-8 px-8">
+            <div class="toolbar flex py-8">
+              <div class="w-1/3 pt-2 relative text-gray-600">
+                <input
+                  class="border-2 w-full border-gray-300 bg-white h-12 px-3 pr-16 rounded-lg text-sm focus:outline-none focus:bg-gray-50 focus:border-gray-500"
+                  type="search"
+                  name="search"
+                  placeholder="Suche"
+                />
+                <button type="submit" class="absolute right-0 top-0 mt-5 mr-4">
+                  <svg
+                    class="text-gray-600 h-4 w-4 fill-current"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    version="1.1"
+                    id="Capa_1"
+                    x="0px"
+                    y="0px"
+                    viewBox="0 0 56.966 56.966"
+                    style="enable-background: new 0 0 56.966 56.966"
+                    xml:space="preserve"
+                    width="512px"
+                    height="512px"
+                  >
+                    <path
+                      d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <table class="results w-full rounded-lg shadow-lg">
+              <thead>
+                <tr>
+                  <th>Firma</th>
+                  <th>Name</th>
+                  <th>Adresse</th>
+                  <th>E-Mail</th>
+                  <th>Telefon</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><a href="#">Peter Pan AG</a></td>
+                  <td>Peter Pan</td>
+                  <td>
+                    Juppidustraße<br />
+                    33333 Bad Wölfenstein
+                  </td>
+                  <td><a href="mailto:peter@pan.net">peter@pan.net</a></td>
+                  <td><a href="tel:+49.561.99329">+49.561.99329</a></td>
+                  <td><a href="#" class="inline-block btn">Details</a></td>
+                </tr>
+                <tr>
+                  <td><a href="#">Peter Pan AG</a></td>
+                  <td>Peter Pan</td>
+                  <td>
+                    Juppidustraße<br />
+                    33333 Bad Wölfenstein
+                  </td>
+                  <td><a href="mailto:peter@pan.net">peter@pan.net</a></td>
+                  <td><a href="tel:+49.561.99329">+49.561.99329</a></td>
+                  <td><a href="#" class="inline-block btn">Details</a></td>
+                </tr>
+                <tr>
+                  <td><a href="#">Peter Pan AG</a></td>
+                  <td>Peter Pan</td>
+                  <td>
+                    Juppidustraße<br />
+                    33333 Bad Wölfenstein
+                  </td>
+                  <td><a href="mailto:peter@pan.net">peter@pan.net</a></td>
+                  <td><a href="tel:+49.561.99329">+49.561.99329</a></td>
+                  <td><a href="#" class="inline-block btn">Details</a></td>
+                </tr>
+                <tr>
+                  <td><a href="#">Peter Pan AG</a></td>
+                  <td>Peter Pan</td>
+                  <td>
+                    Juppidustraße<br />
+                    33333 Bad Wölfenstein
+                  </td>
+                  <td><a href="mailto:peter@pan.net">peter@pan.net</a></td>
+                  <td><a href="tel:+49.561.99329">+49.561.99329</a></td>
+                  <td><a href="#" class="inline-block btn">Details</a></td>
+                </tr>
+                <tr>
+                  <td><a href="#">Peter Pan AG</a></td>
+                  <td>Peter Pan</td>
+                  <td>
+                    Juppidustraße<br />
+                    33333 Bad Wölfenstein
+                  </td>
+                  <td><a href="mailto:peter@pan.net">peter@pan.net</a></td>
+                  <td><a href="tel:+49.561.99329">+49.561.99329</a></td>
+                  <td><a href="#" class="inline-block btn">Details</a></td>
+                </tr>
+                <tr>
+                  <td><a href="#">Peter Pan AG</a></td>
+                  <td>Peter Pan</td>
+                  <td>
+                    Juppidustraße<br />
+                    33333 Bad Wölfenstein
+                  </td>
+                  <td><a href="mailto:peter@pan.net">peter@pan.net</a></td>
+                  <td><a href="tel:+49.561.99329">+49.561.99329</a></td>
+                  <td><a href="#" class="inline-block btn">Details</a></td>
+                </tr>
+                <tr>
+                  <td><a href="#">Peter Pan AG</a></td>
+                  <td>Peter Pan</td>
+                  <td>
+                    Juppidustraße<br />
+                    33333 Bad Wölfenstein
+                  </td>
+                  <td><a href="mailto:peter@pan.net">peter@pan.net</a></td>
+                  <td><a href="tel:+49.561.99329">+49.561.99329</a></td>
+                  <td><a href="#" class="inline-block btn">Details</a></td>
+                </tr>
+                <tr>
+                  <td><a href="#">Peter Pan AG</a></td>
+                  <td>Peter Pan</td>
+                  <td>
+                    Juppidustraße<br />
+                    33333 Bad Wölfenstein
+                  </td>
+                  <td><a href="mailto:peter@pan.net">peter@pan.net</a></td>
+                  <td><a href="tel:+49.561.99329">+49.561.99329</a></td>
+                  <td><a href="#" class="inline-block btn">Details</a></td>
+                </tr>
+                <tr>
+                  <td><a href="#">Peter Pan AG</a></td>
+                  <td>Peter Pan</td>
+                  <td>
+                    Juppidustraße<br />
+                    33333 Bad Wölfenstein
+                  </td>
+                  <td><a href="mailto:peter@pan.net">peter@pan.net</a></td>
+                  <td><a href="tel:+49.561.99329">+49.561.99329</a></td>
+                  <td><a href="#" class="inline-block btn">Details</a></td>
+                </tr>
+                <tr>
+                  <td><a href="#">Peter Pan AG</a></td>
+                  <td>Peter Pan</td>
+                  <td>
+                    Juppidustraße<br />
+                    33333 Bad Wölfenstein
+                  </td>
+                  <td><a href="mailto:peter@pan.net">peter@pan.net</a></td>
+                  <td><a href="tel:+49.561.99329">+49.561.99329</a></td>
+                  <td><a href="#" class="inline-block btn">Details</a></td>
+                </tr>
+                <tr>
+                  <td><a href="#">Peter Pan AG</a></td>
+                  <td>Peter Pan</td>
+                  <td>
+                    Juppidustraße<br />
+                    33333 Bad Wölfenstein
+                  </td>
+                  <td><a href="mailto:peter@pan.net">peter@pan.net</a></td>
+                  <td><a href="tel:+49.561.99329">+49.561.99329</a></td>
+                  <td><a href="#" class="inline-block btn">Details</a></td>
+                </tr>
+                <tr>
+                  <td><a href="#">Peter Pan AG</a></td>
+                  <td>Peter Pan</td>
+                  <td>
+                    Juppidustraße<br />
+                    33333 Bad Wölfenstein
+                  </td>
+                  <td><a href="mailto:peter@pan.net">peter@pan.net</a></td>
+                  <td><a href="tel:+49.561.99329">+49.561.99329</a></td>
+                  <td><a href="#" class="inline-block btn">Details</a></td>
+                </tr>
+                <tr>
+                  <td><a href="#">Peter Pan AG</a></td>
+                  <td>Peter Pan</td>
+                  <td>
+                    Juppidustraße<br />
+                    33333 Bad Wölfenstein
+                  </td>
+                  <td><a href="mailto:peter@pan.net">peter@pan.net</a></td>
+                  <td><a href="tel:+49.561.99329">+49.561.99329</a></td>
+                  <td><a href="#" class="inline-block btn">Details</a></td>
+                </tr>
+                <tr>
+                  <td><a href="#">Peter Pan AG</a></td>
+                  <td>Peter Pan</td>
+                  <td>
+                    Juppidustraße<br />
+                    33333 Bad Wölfenstein
+                  </td>
+                  <td><a href="mailto:peter@pan.net">peter@pan.net</a></td>
+                  <td><a href="tel:+49.561.99329">+49.561.99329</a></td>
+                  <td><a href="#" class="inline-block btn">Details</a></td>
+                </tr>
+                <tr>
+                  <td><a href="#">Peter Pan AG</a></td>
+                  <td>Peter Pan</td>
+                  <td>
+                    Juppidustraße<br />
+                    33333 Bad Wölfenstein
+                  </td>
+                  <td><a href="mailto:peter@pan.net">peter@pan.net</a></td>
+                  <td><a href="tel:+49.561.99329">+49.561.99329</a></td>
+                  <td><a href="#" class="inline-block btn">Details</a></td>
+                </tr>
+                <tr>
+                  <td><a href="#">Peter Pan AG</a></td>
+                  <td>Peter Pan</td>
+                  <td>
+                    Juppidustraße<br />
+                    33333 Bad Wölfenstein
+                  </td>
+                  <td><a href="mailto:peter@pan.net">peter@pan.net</a></td>
+                  <td><a href="tel:+49.561.99329">+49.561.99329</a></td>
+                  <td><a href="#" class="inline-block btn">Details</a></td>
+                </tr>
+                <tr>
+                  <td><a href="#">Peter Pan AG</a></td>
+                  <td>Peter Pan</td>
+                  <td>
+                    Juppidustraße<br />
+                    33333 Bad Wölfenstein
+                  </td>
+                  <td><a href="mailto:peter@pan.net">peter@pan.net</a></td>
+                  <td><a href="tel:+49.561.99329">+49.561.99329</a></td>
+                  <td><a href="#" class="inline-block btn">Details</a></td>
+                </tr>
+                <tr>
+                  <td><a href="#">Peter Pan AG</a></td>
+                  <td>Peter Pan</td>
+                  <td>
+                    Juppidustraße<br />
+                    33333 Bad Wölfenstein
+                  </td>
+                  <td><a href="mailto:peter@pan.net">peter@pan.net</a></td>
+                  <td><a href="tel:+49.561.99329">+49.561.99329</a></td>
+                  <td><a href="#" class="inline-block btn">Details</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div
+          x-show="sidebarOpen === 'right'"
+          @click.away="sidebarOpen = 'none'"
+          class="sidebar w-1/2 lg:w-1/4 h-full bg-gray-50 py-8 px-4 shadow-lg border flex justify-between"
+        >
+          <h4 class="uppercase">Sidebar right</h4>
+          <div @click="sidebarOpen = 'none'" class="close cursor-pointer">
+            <svg
+              class="text-gray-600 h-4 w-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/sidebar.js"></script>
+  </body>
+</html>

@@ -53,6 +53,47 @@
 
 @tailwind base;
 
+.results .table-row:nth-child(even) {
+  @apply bg-gray-50
+}
+
+.results .table-header .table-cell {
+  @apply text-left uppercase font-normal border bg-gray-600 text-white p-4
+}
+
+.results td {
+  @apply text-left font-normal border text-gray-900 px-4 py-2 align-top
+}
+
+.results td:first-child {
+  @apply font-semibold
+}
+
+.results td:first-child a {
+  @apply text-gray-900
+}
+
+.results td:first-child a:hover {
+  @apply text-gray-900 underline
+}
+
+.results td a:not(.text-white) {
+  @apply text-spw-blue
+}
+
+.results td a:not(.text-white):hover {
+  @apply text-spw-blue-dark underline
+}
+
+
+.results td a.btn {
+  @apply bg-gray-200 text-gray-800 rounded px-6 py-2 shadow-sm
+}
+
+.results td a.btn:hover {
+  @apply bg-gray-300
+}
+
 @tailwind components;
 
 @tailwind utilities;
