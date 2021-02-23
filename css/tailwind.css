@@ -53,8 +53,12 @@
 
 @tailwind base;
 
-.results .table-row:nth-child(even) {
-  @apply bg-gray-50
+.results .data-row:nth-child(even) {
+  @apply bg-white
+}
+
+.results .data-row:nth-child(even):hover {
+  @apply bg-gray-200
 }
 
 .results .table-header .table-cell {
@@ -92,6 +96,23 @@
 
 .results td a.btn:hover {
   @apply bg-gray-300
+}
+
+.nav-item {
+  @apply transition duration-500 ease-in-out block px-4 py-2 bg-gray-200
+}
+
+.nav-item:hover {
+  @apply transition duration-500 ease-in-out block px-4 py-2 bg-gray-300
+}
+
+.nav-item.active {
+  @apply transition duration-500 ease-in-out block px-4 py-2 bg-gray-600 text-white
+}
+
+/* hidden on mobile/smaller screens */
+@media screen and (max-width: 768px) {
+    [x-cloak="mobile"] { display: none !important; border:2px solid red !important }
 }
 
 @tailwind components;

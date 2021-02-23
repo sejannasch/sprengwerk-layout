@@ -1,7 +1,7 @@
 function sidebars() {
     return {
-        sidebarLeftOpen: false,
-        sidebarRightOpen: false,
+        sidebarLeftOpen: true,
+        sidebarRightOpen: true,
         showLeftSidebar() {
             this.sidebarLeftOpen = true;
             this.sidebarRightOpen = false;

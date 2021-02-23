@@ -17,6 +17,7 @@
       x-show.transition.duration.500ms.opacity="sidebarRightOpen"
       @click.away="sidebarOpen = 'none'"
       class="sidebar w-96 absolute right-0 top-0 bottom-0 bg-gray-50 py-24 px-4 shadow-lg border z-30"
+      x-cloak="mobile"
     >
       <div class="sidebar-header flex justify-between">
         <h4 class="uppercase">Filter</h4>
@@ -43,6 +44,7 @@
       x-show.transition.duration.500ms.opacity="sidebarLeftOpen"
       @click.away="sidebarOpen = 'none'"
       class="sidebar w-96 absolute left-0 top-0 bottom-0 bg-gray-50 py-24 px-4 shadow-lg border z-30"
+      x-cloak="mobile"
     >
       <div class="sidebar-header flex justify-between">
         <h4 class="uppercase">Menü</h4>
@@ -65,34 +67,34 @@
       <ul class="sidenav w-full rounded min-h-64 mt-12">
         <li class="mb-2">
           <a
-            class="transition duration-500 ease-in-out block px-4 py-2 bg-gray-200 hover:bg-gray-300"
+            class="active nav-item"
             href="#"
-            >Suche</a
+            >Kontakte</a
           >
         </li>
         <li class="mb-2">
           <a
             class="transition duration-500 ease-in-out block px-4 py-2 bg-gray-200 hover:bg-gray-300"
             href="#"
-            >Gewerke bearbeiten</a
+            >Gewerke</a
           >
         </li>
         <li class="mb-2">
           <a
             class="transition duration-500 ease-in-out block px-4 py-2 bg-gray-200 hover:bg-gray-300"
             href="#"
-            >Gruppen bearbeiten</a
+            >Gruppen</a
           >
         </li>
       </ul>
     </div>
     <!-- End Sidebar Left -->
     <nav
-      class="fixed w-full px-0 lg:px-4 py-4 flex justify-between items-center bg-gray-100 border-b shadow-lg z-50"
+      class="fixed w-full px-0 lg:px-4 py-0 flex justify-between items-center bg-spw-blue border-b shadow-lg z-50 text-white"
     >
       <button @click="showLeftSidebar()">
         <svg
-          class="h-6 w-6 text-gray-600 hover:text-gray-900 focus:outline-none text-sm"
+          class="h-6 w-6 text-white hover:text-gray-200 focus:outline-none text-sm"
           viewBox="0 0 20 20"
           fill="currentColor"
         >
@@ -103,14 +105,16 @@
           />
         </svg>
       </button>
-      <img
+      <div class="py-4 px-4 bg-white">
+        <img
         src="img/sprengwerk_logo.svg"
         alt="Logo Sprengwerk"
         class="block mx-auto h-4 lg:h-10"
       />
+      </div>
       <button @click="showRightSidebar()">
         <svg
-          class="h-6 w-6 text-gray-600 hover:text-gray-900 focus:outline-none text-sm"
+          class="h-6 w-6 text-white hover:text-gray-200 focus:outline-none text-sm"
           viewBox="0 0 20 20"
           fill="currentColor"
         >
@@ -130,106 +134,293 @@
         :class="{ 'lg:pr-96' : sidebarRightOpen , '' : !sidebarRightOpen}"
         class="px-2 lg:px-12 w-full"
       >
-      <div class="toolbar flex py-8">
-        <div class="w-full lg:w-1/3 pt-2 relative text-gray-600">
-          <input
-            class="border-2 w-full border-gray-300 bg-white h-12 px-3 pr-16 rounded-lg text-sm focus:outline-none focus:bg-gray-50 focus:border-gray-500"
-            type="search"
-            name="search"
-            placeholder="Suche"
-          />
-          <button type="submit" class="absolute right-0 top-0 mt-5 mr-4">
-            <svg
-              class="text-gray-600 h-4 w-4 fill-current"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
-              version="1.1"
-              id="Capa_1"
-              x="0px"
-              y="0px"
-              viewBox="0 0 56.966 56.966"
-              style="enable-background: new 0 0 56.966 56.966"
-              xml:space="preserve"
-              width="512px"
-              height="512px"
-            >
-              <path
-                d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z"
-              />
-            </svg>
-          </button>
-        </div>
-      </div>
-          <div class="table w-full results">
-            <div class="hidden lg:table-row table-header">
-              <div class="lg:table-cell text-left uppercase font-normal border lg:bg-gray-600 text-white px-4 py-2 lg:px-4 lg:py-4">Firma</div>
-              <div class="lg:table-cell text-left uppercase font-normal border lg:bg-gray-600 text-white px-4 py-2 lg:px-4 lg:py-4">Name</div>
-              <div class="lg:table-cell text-left uppercase font-normal border lg:bg-gray-600 text-white px-4 py-2 lg:px-4 lg:py-4">Adresse</div>
-              <div class="lg:table-cell text-left uppercase font-normal border lg:bg-gray-600 text-white px-4 py-2 lg:px-4 lg:py-4">E-Mail</div>
-              <div class="lg:table-cell text-left uppercase font-normal border lg:bg-gray-600 text-white px-4 py-2 lg:px-4 lg:py-4">Telefon</div>
-            </div>
-            <div class="lg:table-row table-body pb-4 lg:pb-0 border-b lg:border-none">
-              <div class="lg:table-cell text-left font-semibold lg:border text-gray-900 px-4 py-1 lg:py-2 align-top">Peter Pan AG</div>
-              <div class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top">Peter Pan</div>
-              <div class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top">Juppidustraße<br />
-                33333 Bad Wölfenstein</div>
-              <div class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top">
-                <a class="text-spw-blue hover:underline" href="mailto:peter@pan.net">peter@pan.net</a>
-              </div>
-              <div class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top"><a class="text-spw-blue hover:underline" href="tel:+49.561.99329">+49.561.99329</a></div>
-            </div>
-            <div class="lg:table-row table-body pb-4 lg:pb-0 border-b lg:border-none">
-              <div class="lg:table-cell text-left font-semibold lg:border text-gray-900 px-4 py-1 lg:py-2 align-top">Peter Pan AG</div>
-              <div class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top">Peter Pan</div>
-              <div class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top">Juppidustraße<br />
-                33333 Bad Wölfenstein</div>
-              <div class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top">
-                <a class="text-spw-blue hover:underline" href="mailto:peter@pan.net">peter@pan.net</a>
-              </div>
-              <div class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top"><a class="text-spw-blue hover:underline" href="tel:+49.561.99329">+49.561.99329</a></div>
-            </div>
-            <div class="lg:table-row table-body pb-4 lg:pb-0 border-b lg:border-none">
-              <div class="lg:table-cell text-left font-semibold lg:border text-gray-900 px-4 py-1 lg:py-2 align-top">Peter Pan AG</div>
-              <div class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top">Peter Pan</div>
-              <div class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top">Juppidustraße<br />
-                33333 Bad Wölfenstein</div>
-              <div class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top">
-                <a class="text-spw-blue hover:underline" href="mailto:peter@pan.net">peter@pan.net</a>
-              </div>
-              <div class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top"><a class="text-spw-blue hover:underline" href="tel:+49.561.99329">+49.561.99329</a></div>
-            </div>
-            <div class="lg:table-row table-body pb-4 lg:pb-0 border-b lg:border-none">
-              <div class="lg:table-cell text-left font-semibold lg:border text-gray-900 px-4 py-1 lg:py-2 align-top">Peter Pan AG</div>
-              <div class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top">Peter Pan</div>
-              <div class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top">Juppidustraße<br />
-                33333 Bad Wölfenstein</div>
-              <div class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top">
-                <a class="text-spw-blue hover:underline" href="mailto:peter@pan.net">peter@pan.net</a>
-              </div>
-              <div class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top"><a class="text-spw-blue hover:underline" href="tel:+49.561.99329">+49.561.99329</a></div>
-            </div>
-            <div class="lg:table-row table-body pb-4 lg:pb-0 border-b lg:border-none">
-              <div class="lg:table-cell text-left font-semibold lg:border text-gray-900 px-4 py-1 lg:py-2 align-top">Peter Pan AG</div>
-              <div class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top">Peter Pan</div>
-              <div class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top">Juppidustraße<br />
-                33333 Bad Wölfenstein</div>
-              <div class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top">
-                <a class="text-spw-blue hover:underline" href="mailto:peter@pan.net">peter@pan.net</a>
-              </div>
-              <div class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top"><a class="text-spw-blue hover:underline" href="tel:+49.561.99329">+49.561.99329</a></div>
-            </div>
-            <div class="lg:table-row table-body pb-4 lg:pb-0 border-b lg:border-none">
-              <div class="lg:table-cell text-left font-semibold lg:border text-gray-900 px-4 py-1 lg:py-2 align-top">Peter Pan AG</div>
-              <div class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top">Peter Pan</div>
-              <div class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top">Juppidustraße<br />
-                33333 Bad Wölfenstein</div>
-              <div class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top">
-                <a class="text-spw-blue hover:underline" href="mailto:peter@pan.net">peter@pan.net</a>
-              </div>
-              <div class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top"><a class="text-spw-blue hover:underline" href="tel:+49.561.99329">+49.561.99329</a></div>
-            </div>
-            
+        <div class="toolbar flex py-8">
+          <div class="w-full lg:w-1/3 pt-2 relative text-gray-600">
+            <input
+              class="border-2 w-full border-gray-300 bg-white h-12 px-3 pr-16 rounded-lg text-sm focus:outline-none focus:bg-gray-50 focus:border-gray-500"
+              type="search"
+              name="search"
+              placeholder="Suche"
+            />
+            <button type="submit" class="absolute right-0 top-0 mt-5 mr-4">
+              <svg
+                class="text-gray-600 h-4 w-4 fill-current"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                version="1.1"
+                id="Capa_1"
+                x="0px"
+                y="0px"
+                viewBox="0 0 56.966 56.966"
+                style="enable-background: new 0 0 56.966 56.966"
+                xml:space="preserve"
+                width="512px"
+                height="512px"
+              >
+                <path
+                  d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z"
+                />
+              </svg>
+            </button>
           </div>
+        </div>
+        <div class="table w-full results rounded border shadow-lg bg-gray-50">
+          <div class="hidden lg:table-row hover:bg-gray-300 table-header">
+            <div
+              class="lg:table-cell text-left uppercase font-normal border lg:bg-gray-600 text-white px-4 py-2 lg:px-4 lg:py-4"
+            >
+              Firma
+            </div>
+            <div
+              class="lg:table-cell text-left uppercase font-normal border lg:bg-gray-600 text-white px-4 py-2 lg:px-4 lg:py-4"
+            >
+              Name
+            </div>
+            <div
+              class="lg:table-cell text-left uppercase font-normal border lg:bg-gray-600 text-white px-4 py-2 lg:px-4 lg:py-4"
+            >
+              Adresse
+            </div>
+            <div
+              class="lg:table-cell text-left uppercase font-normal border lg:bg-gray-600 text-white px-4 py-2 lg:px-4 lg:py-4"
+            >
+              E-Mail
+            </div>
+            <div
+              class="lg:table-cell text-left uppercase font-normal border lg:bg-gray-600 text-white px-4 py-2 lg:px-4 lg:py-4"
+            >
+              Telefon
+            </div>
+          </div>
+          <div
+            class="lg:table-row hover:bg-gray-300 pb-4 lg:pb-0 border-b lg:border-none data-row"
+          >
+            <div
+              class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top"
+            >
+              <a class="font-normal text-spw-blue block hover:underline" href="#"> Peter Pan AG </a>
+            </div>
+            <div
+              class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top"
+            >
+              Peter Pan
+            </div>
+            <div
+              class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top"
+            >
+              Juppidustraße<br />
+              33333 Bad Wölfenstein
+            </div>
+            <div
+              class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top"
+            >
+              <a
+                class="block text-spw-blue font-normal hover:underline"
+                href="mailto:peter@pan.net"
+                >peter@pan.net</a
+              >
+            </div>
+            <div
+              class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top"
+            >
+              <a
+                class="block text-spw-blue font-normal hover:underline"
+                href="tel:+49.561.99329"
+                >+49.561.99329</a
+              >
+            </div>
+          </div>
+          <div
+            class="lg:table-row hover:bg-gray-300 pb-4 lg:pb-0 border-b lg:border-none data-row"
+          >
+            <div
+              class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top"
+            >
+              <a class="font-normal text-spw-blue block hover:underline" href="#"> Peter Pan AG </a>
+            </div>
+            <div
+              class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top"
+            >
+              Peter Pan
+            </div>
+            <div
+              class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top"
+            >
+              Juppidustraße<br />
+              33333 Bad Wölfenstein
+            </div>
+            <div
+              class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top"
+            >
+              <a
+                class="block text-spw-blue font-normal hover:underline"
+                href="mailto:peter@pan.net"
+                >peter@pan.net</a
+              >
+            </div>
+            <div
+              class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top"
+            >
+              <a
+                class="block text-spw-blue font-normal hover:underline"
+                href="tel:+49.561.99329"
+                >+49.561.99329</a
+              >
+            </div>
+          </div>
+          <div
+            class="lg:table-row hover:bg-gray-300 pb-4 lg:pb-0 border-b lg:border-none data-row"
+          >
+            <div
+              class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top"
+            >
+              <a class="font-normal text-spw-blue block hover:underline" href="#"> Peter Pan AG </a>
+            </div>
+            <div
+              class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top"
+            >
+              Peter Pan
+            </div>
+            <div
+              class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top"
+            >
+              Juppidustraße<br />
+              33333 Bad Wölfenstein
+            </div>
+            <div
+              class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top"
+            >
+              <a
+                class="block text-spw-blue font-normal hover:underline"
+                href="mailto:peter@pan.net"
+                >peter@pan.net</a
+              >
+            </div>
+            <div
+              class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top"
+            >
+              <a
+                class="block text-spw-blue font-normal hover:underline"
+                href="tel:+49.561.99329"
+                >+49.561.99329</a
+              >
+            </div>
+          </div>
+          <div
+            class="lg:table-row hover:bg-gray-300 pb-4 lg:pb-0 border-b lg:border-none data-row"
+          >
+            <div
+              class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top"
+            >
+              <a class="font-normal text-spw-blue block hover:underline" href="#"> Peter Pan AG </a>
+            </div>
+            <div
+              class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top"
+            >
+              Peter Pan
+            </div>
+            <div
+              class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top"
+            >
+              Juppidustraße<br />
+              33333 Bad Wölfenstein
+            </div>
+            <div
+              class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top"
+            >
+              <a
+                class="block text-spw-blue font-normal hover:underline"
+                href="mailto:peter@pan.net"
+                >peter@pan.net</a
+              >
+            </div>
+            <div
+              class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top"
+            >
+              <a
+                class="block text-spw-blue font-normal hover:underline"
+                href="tel:+49.561.99329"
+                >+49.561.99329</a
+              >
+            </div>
+          </div>
+          <div
+            class="lg:table-row hover:bg-gray-300 pb-4 lg:pb-0 border-b lg:border-none data-row"
+          >
+            <div
+              class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top"
+            >
+              <a class="font-normal text-spw-blue block hover:underline" href="#"> Peter Pan AG </a>
+            </div>
+            <div
+              class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top"
+            >
+              Peter Pan
+            </div>
+            <div
+              class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top"
+            >
+              Juppidustraße<br />
+              33333 Bad Wölfenstein
+            </div>
+            <div
+              class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top"
+            >
+              <a
+                class="block text-spw-blue font-normal hover:underline"
+                href="mailto:peter@pan.net"
+                >peter@pan.net</a
+              >
+            </div>
+            <div
+              class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top"
+            >
+              <a
+                class="block text-spw-blue font-normal hover:underline"
+                href="tel:+49.561.99329"
+                >+49.561.99329</a
+              >
+            </div>
+          </div>
+          <div
+            class="lg:table-row hover:bg-gray-300 pb-4 lg:pb-0 border-b lg:border-none data-row"
+          >
+            <div
+              class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top"
+            >
+              <a class="font-normal text-spw-blue block hover:underline" href="#"> Peter Pan AG </a>
+            </div>
+            <div
+              class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top"
+            >
+              Peter Pan
+            </div>
+            <div
+              class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top"
+            >
+              Juppidustraße<br />
+              33333 Bad Wölfenstein
+            </div>
+            <div
+              class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top"
+            >
+              <a
+                class="block text-spw-blue font-normal hover:underline"
+                href="mailto:peter@pan.net"
+                >peter@pan.net</a
+              >
+            </div>
+            <div
+              class="lg:table-cell text-left font-normal lg:border text-gray-900 px-4 py-1 lg:py-2 align-top"
+            >
+              <a
+                class="block text-spw-blue font-normal hover:underline"
+                href="tel:+49.561.99329"
+                >+49.561.99329</a
+              >
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </body>

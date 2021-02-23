@@ -616,9 +616,14 @@ video {
   height: auto;
 }
 
-.results .table-row:nth-child(even) {
+.results .data-row:nth-child(even) {
   --tw-bg-opacity: 1;
-  background-color: rgba(249, 250, 251, var(--tw-bg-opacity))
+  background-color: rgba(255, 255, 255, var(--tw-bg-opacity))
+}
+
+.results .data-row:nth-child(even):hover {
+  --tw-bg-opacity: 1;
+  background-color: rgba(229, 231, 235, var(--tw-bg-opacity))
 }
 
 .results td a:not(.results .table-header .table-cell) {
@@ -700,6 +705,71 @@ video {
 .results td a.btn:hover {
   --tw-bg-opacity: 1;
   background-color: rgba(209, 213, 219, var(--tw-bg-opacity))
+}
+
+.nav-item {
+  --tw-bg-opacity: 1;
+  background-color: rgba(229, 231, 235, var(--tw-bg-opacity));
+  display: block;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 500ms
+}
+
+.nav-item:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgba(209, 213, 219, var(--tw-bg-opacity));
+  display: block;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 500ms
+}
+
+.results td a:not(.nav-item.active) {
+  --tw-text-opacity: 1;
+  color: rgba(61, 127, 194, var(--tw-text-opacity))
+}
+
+.results td a:not(.nav-item.active):hover {
+  --tw-text-opacity: 1;
+  color: rgba(27, 84, 142, var(--tw-text-opacity));
+  text-decoration: underline
+}
+
+.nav-item.active {
+  --tw-bg-opacity: 1;
+  background-color: rgba(75, 85, 99, var(--tw-bg-opacity));
+  display: block;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  --tw-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--tw-text-opacity));
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 500ms;
+}
+
+/* hidden on mobile/smaller screens */
+
+@media screen and (max-width: 768px) {
+  [x-cloak="mobile"] { display: none !important; border:2px solid red !important
+  }
 }
 
 .container {
